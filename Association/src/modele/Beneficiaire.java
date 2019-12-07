@@ -24,7 +24,7 @@ public class Beneficiaire extends PersonnePhysique {
 
 	@Override
 	public String toString() {
-		return super.toString()+"\tDateNaissance : "+dateNaissance;
+		return "[BENEFICIAIRE]\n"+super.toString()+"\tDateNaissance : "+dateNaissance;
 	}
 	
 	

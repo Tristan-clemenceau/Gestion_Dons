@@ -47,7 +47,7 @@ public class Association extends Stockage {
 
 	@Override
 	public String toString() {
-		return super.toString()+"\nArchive=" + archive + "\nPersonneLieAsso=" + PersonneLieAsso + "\nAdherents=" + adherents
+		return "[ASSOCIATION]\n"+super.toString()+"\nArchive=" + archive + "\nPersonneLieAsso=" + PersonneLieAsso + "\nAdherents=" + adherents
 				+ "\nBeneficiaire=" + beneficiaire;
 	}
 	

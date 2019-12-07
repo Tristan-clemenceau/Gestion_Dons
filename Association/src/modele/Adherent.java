@@ -21,7 +21,7 @@ public class Adherent extends PersonnePhysique{
 
 	@Override
 	public String toString() {
-		return super.toString()+"\tfonctionParticuliere : "+fonctionParticuliere;
+		return "[ADHERENT]\n"+super.toString()+"\tfonctionParticuliere : "+fonctionParticuliere;
 	}
 	
 }
