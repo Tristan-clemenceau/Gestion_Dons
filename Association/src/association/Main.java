@@ -6,7 +6,8 @@ public class Main {
 		try {
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("[ERREUR]-"+e.getMessage());
+			e.getStackTrace();
 		}
 		
 	}

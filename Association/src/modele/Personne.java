@@ -1,6 +1,9 @@
 package modele;
 
+import services.LogService;
+
 public class Personne {
+	private LogService log;
 	protected final static String UNSET = "Inconnu";
 	private static int registre;
 	private int identifiant;
