@@ -19,6 +19,7 @@ public class TestMain {
 		System.out.println(ad1);
 		System.out.println(asso);
 		System.out.println(obj);
+		b1.logMessage("OOOHHHHHH");
 	}
 
 }

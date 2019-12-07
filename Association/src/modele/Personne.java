@@ -3,7 +3,7 @@ package modele;
 import services.LogService;
 
 public class Personne {
-	private LogService log;
+	private static LogService log = new LogService();
 	protected final static String UNSET = "Inconnu";
 	private static int registre;
 	private int identifiant;
@@ -57,11 +57,17 @@ public class Personne {
 		this.telephone = telephone;
 	}
 
+	public LogService getLog() {
+		return log;
+	}
+
 	@Override
 	public String toString() {
 		return "Nom : "+nom+"\tTel : "+telephone+"\tCoordonnee : "+coordonne;
 	}
 	
-	
+	public void logMessage(String message) {
+		
+	}
 	
 }
