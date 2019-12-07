@@ -1,9 +1,6 @@
 package modele;
 
-import services.LogService;
-
 public class Personne {
-	private static LogService log = new LogService();
 	protected final static String UNSET = "Inconnu";
 	private static int registre;
 	private int identifiant;
@@ -55,10 +52,6 @@ public class Personne {
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
-	}
-
-	public LogService getLog() {
-		return log;
 	}
 
 	@Override
