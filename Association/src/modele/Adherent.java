@@ -31,6 +31,14 @@ public class Adherent extends PersonnePhysique{
 	public void setFonctionParticuliere(FonctionParticu fonctionParticuliere) {
 		this.fonctionParticuliere = fonctionParticuliere;
 	}
+	
+	public Don creationDon() {
+		return new Don();
+	}
+	
+	private ObjetDonnee creationObjet() {
+		return null;
+	}
 
 	@Override
 	public String toString() {

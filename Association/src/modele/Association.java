@@ -196,6 +196,24 @@ public class Association extends Stockage {
 			System.out.println("ERREUR");
 		}
 	}
+	
+	public void setStockageDon(Don don,Stockage lieuStockage) throws Exception {
+		log.writeToLog("info", "setStockageDon");
+		if(getListDons().contains(don)) {
+			don.setLieuxStockage(lieuStockage);
+		}else {
+			throw new Exception("Ce don n'appartient pas a la liste de dons de l'association");
+		}
+	}
+	
+	public void transfertDonToBeneficiaire(Don don , Beneficiaire beneficiaire) throws Exception {
+		log.writeToLog("info", "transfertDonToBeneficiaire");
+		if(getListDons().contains(don)&& this.beneficiaire.contains(beneficiaire)) {
+			don.setBeneficiaire(beneficiaire);
+		}else {
+			throw new Exception("Soit ce don n'est pas dans l'association soit ce beneficiare n'existe pas");
+		}
+	}
 
 	@Override
 	public String toString() {
