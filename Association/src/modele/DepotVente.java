@@ -1,8 +1,10 @@
 package modele;
 
+import java.io.IOException;
+
 public class DepotVente extends Stockage {
 	
-	public DepotVente() {
+	public DepotVente() throws IOException {
 		super();
 	}
 

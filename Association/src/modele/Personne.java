@@ -7,7 +7,6 @@ public class Personne {
 	private String nom,coordonne,telephone;
 	
 	public Personne(String nom, String coordonne, String telephone) {
-		this.identifiant = registre;
 		this.nom = nom;
 		this.coordonne = coordonne;
 		this.telephone = telephone;
@@ -15,7 +14,6 @@ public class Personne {
 	}
 	
 	public Personne() {
-		this.identifiant = registre;
 		this.nom = UNSET;
 		this.coordonne = UNSET;
 		this.telephone = UNSET;
