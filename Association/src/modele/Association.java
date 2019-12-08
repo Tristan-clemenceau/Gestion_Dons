@@ -1,5 +1,10 @@
 package modele;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,15 +50,25 @@ public class Association extends Stockage {
 		this.beneficiaire = beneficiaire;
 	}
 	
-	public void fillAdherent() {
-		
+	public void fillAdherent() throws IOException {
+		File file = new File("src/file/Adherents.txt");
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		String st;
+		while ((st = br.readLine()) != null) {
+			System.out.println(st);
+		}
 	}
 	
-	public void fillBeneficiaire() {
-		
+	public void fillBeneficiaire() throws IOException {
+		File file = new File("src/file/Beneficiaires.txt");
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		String st;
+		while ((st = br.readLine()) != null) {
+			System.out.println(st);
+		}
 	}
 
-	public void setUp() {
+	public void setUp() throws IOException {
 		fillAdherent();
 		fillBeneficiaire();
 	}

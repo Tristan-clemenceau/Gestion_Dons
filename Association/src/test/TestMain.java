@@ -20,6 +20,7 @@ public class TestMain {
 		log.writeToLog("test", "1");
 		log.writeToLog("test", "2");
 		log.closeLogFile();
+		asso.setUp();
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
