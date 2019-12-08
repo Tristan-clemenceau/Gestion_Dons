@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Association extends Stockage {
 	private List<Don> archive = new ArrayList<Don>();
-	private List<PersonnePhysique> PersonneLieAsso = new ArrayList<PersonnePhysique>(); 
+	private List<PersonnePhysique> personneLieAsso = new ArrayList<PersonnePhysique>(); 
 	private List<Adherent> adherents = new ArrayList<Adherent>();
 	private List<Beneficiaire> beneficiaire = new ArrayList<Beneficiaire>();
 	
@@ -22,11 +22,11 @@ public class Association extends Stockage {
 	}
 
 	public List<PersonnePhysique> getPersonneLieAsso() {
-		return PersonneLieAsso;
+		return personneLieAsso;
 	}
 
 	public void setPersonneLieAsso(List<PersonnePhysique> personneLieAsso) {
-		PersonneLieAsso = personneLieAsso;
+		this.personneLieAsso = personneLieAsso;
 	}
 
 	public List<Adherent> getAdherents() {
@@ -44,10 +44,35 @@ public class Association extends Stockage {
 	public void setBeneficiaire(List<Beneficiaire> beneficiaire) {
 		this.beneficiaire = beneficiaire;
 	}
+	
+	public void fillAdherent() {
+		
+	}
+	
+	public void fillBeneficiaire() {
+		
+	}
 
+	public void setUp() {
+		fillAdherent();
+		fillBeneficiaire();
+	}
+	
+	public void addAdherent(Adherent adherent) {
+		adherents.add(adherent);
+		personneLieAsso.add(adherent);
+	}
+	
+	public void addBeneficiare(Beneficiaire beneficiare) {
+		beneficiaire.add(beneficiare);
+		personneLieAsso.add(beneficiare);
+	}
+	
+	
+	
 	@Override
 	public String toString() {
-		return "[ASSOCIATION]\n"+super.toString()+"\nArchive=" + archive + "\nPersonneLieAsso=" + PersonneLieAsso + "\nAdherents=" + adherents
+		return "[ASSOCIATION]\n"+super.toString()+"\nArchive=" + archive + "\nPersonneLieAsso=" + personneLieAsso + "\nAdherents=" + adherents
 				+ "\nBeneficiaire=" + beneficiaire;
 	}
 	
