@@ -208,7 +208,7 @@ public class Association extends Stockage {
 		case 6:
 			System.out.println("[DONS-DEPOT_VENTE]");
 			for(Don don:getListDons()) {
-				if(don.getStatu().equals(StatutDon.DONNE)) {
+				if(don.getLieuxStockage().getClass().getName().toUpperCase().equals("MODELE.DEPOTVENTE")) {
 					System.out.println(don);
 				}
 			}
