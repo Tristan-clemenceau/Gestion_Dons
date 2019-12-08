@@ -161,7 +161,7 @@ public class Association extends Stockage {
 			break;
 		}
 	}
-	
+
 	public void suppression(PersonnePhysique personne) throws Exception {
 		log.writeToLog("info", "supression");
 		if(personne.getClass().getName().toUpperCase().equals("MODELE.ADHERENT")) {
@@ -172,6 +172,28 @@ public class Association extends Stockage {
 			beneficiaire.remove(beneficiaire.indexOf(personne));
 		}else {
 			throw new Exception("Il n'est pas possible de modifier cette personne car elle n'est pas dans la liste de personne associee a l association");
+		}
+	}
+
+	public void modification(PersonnePhysique personne,int modification,String val) throws IOException {
+		log.writeToLog("info", "modification");
+		if(modification >0 && modification<5 && (personne.getClass().getName().toUpperCase().equals("MODELE.ADHERENT")||personne.getClass().getName().toUpperCase().equals("MODELE.BENEFICIAIRE"))) {
+			switch (modification) {
+			case 1:
+				personne.setNom(val);
+				break;
+			case 2:
+				personne.setCoordonne(val);;
+				break;
+			case 3:
+				personne.setTelephone(val);
+				break;
+			case 4:
+				personne.setPrenom(val);
+				break;
+			}
+		}else {
+			System.out.println("ERREUR");
 		}
 	}
 
