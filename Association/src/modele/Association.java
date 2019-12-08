@@ -2,11 +2,12 @@ package modele;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import exception.ExceptionBeneficiaireFile;
 
 public class Association extends Stockage {
 	private List<Don> archive = new ArrayList<Don>();
@@ -59,16 +60,21 @@ public class Association extends Stockage {
 		}
 	}
 	
-	public void fillBeneficiaire() throws IOException {
+	public void fillBeneficiaire() throws IOException, ExceptionBeneficiaireFile {
 		File file = new File("src/file/Beneficiaires.txt");
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String st;
 		while ((st = br.readLine()) != null) {
-			System.out.println(st);
+			String parts[] = st.split(";");
+			if(parts.length != 6) {
+				throw new ExceptionBeneficiaireFile("Le fichier Beneficiaires.txt ne respecte pas la norme, soit une ligne doit avoir exactement 6 champs");
+			}else {
+				System.out.println(st);
+			}
 		}
 	}
 
-	public void setUp() throws IOException {
+	public void setUp() throws IOException, ExceptionBeneficiaireFile {
 		fillAdherent();
 		fillBeneficiaire();
 	}
