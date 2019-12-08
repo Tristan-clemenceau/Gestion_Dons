@@ -3,9 +3,11 @@ package test;
 import modele.Adherent;
 import modele.Association;
 import modele.Beneficiaire;
+import modele.Don;
+import modele.Entrepot;
 import modele.FonctionParticu;
 import modele.ObjetDonnee;
-import services.LogService;
+import modele.StatutDon;
 
 public class TestMain {
 
@@ -17,10 +19,18 @@ public class TestMain {
 			Adherent ad1 = new Adherent(FonctionParticu.MEMBRE);
 			Association asso = new Association();
 			ObjetDonnee obj = new ObjetDonnee();
+			Don d = new Don();
 			asso.setUp();
-			asso.recherche(0, "Durand");
+			asso.recherchePersonnePhysique(0, "Durand");
 			asso.suppression(asso.getBeneficiaire().get(0));
 			asso.modification(asso.getPersonneLieAsso().get(0), 2, "CACA");
+			d.setStatu(StatutDon.REFUSE);
+			d.setBeneficiaire(asso.getBeneficiaire().get(0));
+			d.setMontant(10.0f);
+			d.setLieuxStockage(new Entrepot());
+			System.out.println(d.getLieuxStockage().getClass().getName().toUpperCase());
+			asso.addDon(d);
+			asso.rechercheDon(3);
 			asso.closeLog();
 		}catch(Exception e) {
 			System.out.println("[ERREUR] : "+e.getMessage());

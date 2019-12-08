@@ -5,5 +5,6 @@ public enum StatutDon {
 	REFUSE,
 	STOCKE,
 	ACCEPTE_STOCKE,
-	ATTENTE
+	ATTENTE,
+	DONNE
 }

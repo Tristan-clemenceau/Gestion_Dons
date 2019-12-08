@@ -126,8 +126,8 @@ public class Association extends Stockage {
 
 	/*RECHERCHE*/
 
-	public void recherche(int etat,String var) throws IOException {
-		log.writeToLog("info", "recherche");
+	public void recherchePersonnePhysique(int etat,String var) throws IOException {
+		log.writeToLog("info", "recherchePersonnePhysique");
 		//0 : adherent nom , 1 : adherent tel , 2 : beneficiaire nom , 3 : beneficiare tel
 		switch (etat) {
 		case 0:
@@ -162,12 +162,70 @@ public class Association extends Stockage {
 		}
 	}
 
+	public void rechercheDon(int etat) throws IOException {
+		log.writeToLog("info", "rechercheDon");
+		switch (etat) {
+		case 1:
+			System.out.println("[DONS-REFUSES]");
+			for(Don don:getListDons()) {
+				if(don.getStatu().equals(StatutDon.REFUSE)) {
+					System.out.println(don);
+				}
+			}
+			break;
+		case 2:
+			System.out.println("[DONS-TRAITEMENT]");
+			for(Don don:getListDons()) {
+				if(don.getStatu().equals(StatutDon.STOCKE)||don.getStatu().equals(StatutDon.ACCEPTE)) {
+					System.out.println(don);
+				}
+			}
+			break;
+		case 3:
+			System.out.println("[DONS-VENDU]");
+			for(Don don:getListDons()) {
+				if(don.getBeneficiaire() != null && don.getMontant() >0) {
+					System.out.println(don);
+				}
+			}
+			break;
+		case 4:
+			System.out.println("[DONS-DONNE]");
+			for(Don don:getListDons()) {
+				if(don.getStatu().equals(StatutDon.DONNE)) {
+					System.out.println(don);
+				}
+			}
+			break;
+		case 5:
+			System.out.println("[DONS-STOCKE-ENTREPOT]");
+			for(Don don:getListDons()) {
+				if(don.getLieuxStockage().getClass().getName().toUpperCase().equals("MODELE.ENTREPOT")) {
+					System.out.println(don);
+				}
+			}
+			break;
+		case 6:
+			System.out.println("[DONS-DEPOT_VENTE]");
+			for(Don don:getListDons()) {
+				if(don.getStatu().equals(StatutDon.DONNE)) {
+					System.out.println(don);
+				}
+			}
+			break;
+
+		default:
+			System.out.println("ce mode de recherche n'existe pas ");
+			break;
+		}
+	}
+
 	public void suppression(PersonnePhysique personne) throws Exception {
 		log.writeToLog("info", "supression");
 		if(personne.getClass().getName().toUpperCase().equals("MODELE.ADHERENT")) {
 			personneLieAsso.remove(personneLieAsso.indexOf(personne));
 			adherents.remove(adherents.indexOf(personne));
-		}else if(personne.getClass().getName().toUpperCase().equals("MODELE.BENEFICIAIRE")){//MODELE.BENEFICIAIRE
+		}else if(personne.getClass().getName().toUpperCase().equals("MODELE.BENEFICIAIRE")){
 			personneLieAsso.remove(personneLieAsso.indexOf(personne));
 			beneficiaire.remove(beneficiaire.indexOf(personne));
 		}else {
@@ -196,7 +254,7 @@ public class Association extends Stockage {
 			System.out.println("ERREUR");
 		}
 	}
-	
+
 	public void setStockageDon(Don don,Stockage lieuStockage) throws Exception {
 		log.writeToLog("info", "setStockageDon");
 		if(getListDons().contains(don)) {
@@ -207,7 +265,7 @@ public class Association extends Stockage {
 			throw new Exception("Ce don n'appartient pas a la liste de dons de l'association");
 		}
 	}
-	
+
 	public void transfertDonToBeneficiaire(Don don , Beneficiaire beneficiaire) throws Exception {
 		log.writeToLog("info", "transfertDonToBeneficiaire");
 		if(getListDons().contains(don)&& this.beneficiaire.contains(beneficiaire)) {
@@ -216,7 +274,7 @@ public class Association extends Stockage {
 			throw new Exception("Soit ce don n'est pas dans l'association soit ce beneficiare n'existe pas");
 		}
 	}
-	
+
 	public void addToArchive(Don don) throws Exception {
 		log.writeToLog("info", "addToArchive");
 		if(getListDons().contains(don)) {
