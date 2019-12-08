@@ -56,7 +56,7 @@ public class Association extends Stockage {
 		this.beneficiaire = beneficiaire;
 	}
 
-	public void fillAdherent() throws IOException, ExceptionAdherentFile {
+	private void fillAdherent() throws IOException, ExceptionAdherentFile {
 		log.writeToLog("info", "fillAdherent");
 		File file = new File("src/file/Adherents.txt");
 		BufferedReader br = new BufferedReader(new FileReader(file));
@@ -72,7 +72,7 @@ public class Association extends Stockage {
 		}
 	}
 
-	public void fillBeneficiaire() throws IOException, ExceptionBeneficiaireFile, NumberFormatException, ParseException {
+	private void fillBeneficiaire() throws IOException, ExceptionBeneficiaireFile, NumberFormatException, ParseException {
 		log.writeToLog("info", "fillBeneficiaire");
 		File file = new File("src/file/Beneficiaires.txt");
 		BufferedReader br = new BufferedReader(new FileReader(file));
@@ -123,6 +123,43 @@ public class Association extends Stockage {
 		log.closeLogFile();
 	}
 
+	/*RECHERCHE*/
+
+	public void recherche(int etat,String var) throws IOException {
+		log.writeToLog("info", "recherche");
+		//0 : adherent nom , 1 : adherent tel , 2 : beneficiaire nom , 3 : beneficiare tel
+		switch (etat) {
+		case 0:
+			for(Adherent adherent : adherents) {
+				if(adherent.getNom().toUpperCase().equals(var.toUpperCase())) {
+					System.out.println(adherent);
+				}
+			}
+			break;
+		case 1:
+			for(Adherent adherent : adherents) {
+				if(adherent.getTelephone().toUpperCase().equals(var.toUpperCase())) {
+					System.out.println(adherent);
+				}
+			}
+			break;
+		case 2:
+			for(Beneficiaire beneficiaire : beneficiaire) {
+				if(beneficiaire.getNom().toUpperCase().equals(var.toUpperCase())) {
+					System.out.println(beneficiaire);
+				}
+
+			}
+			break;
+		case 3:
+			for(Beneficiaire beneficiaire : beneficiaire) {
+				if(beneficiaire.getTelephone().toUpperCase().equals(var.toUpperCase())) {
+					System.out.println(beneficiaire);
+				}
+			}
+			break;
+		}
+	}
 
 	@Override
 	public String toString() {

@@ -18,10 +18,11 @@ public class TestMain {
 			Association asso = new Association();
 			ObjetDonnee obj = new ObjetDonnee();
 			asso.setUp();
-			System.out.println(b1);
+			/*System.out.println(b1);
 			System.out.println(ad1);
 			System.out.println(asso);
-			System.out.println(obj);
+			System.out.println(obj);*/
+			asso.recherche(0, "Durand");
 			asso.closeLog();
 		}catch(Exception e) {
 			System.out.println("[ERREUR] : "+e.getMessage());
