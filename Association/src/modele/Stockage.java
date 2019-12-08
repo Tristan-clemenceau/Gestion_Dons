@@ -49,6 +49,10 @@ public class Stockage extends PersonneMorale{
 	public void setListDons(List<Don> listDons) {
 		this.listDons = listDons;
 	}
+	
+	public void addDon(Don don) {
+		listDons.add(don);
+	}
 
 	@Override
 	public String toString() {

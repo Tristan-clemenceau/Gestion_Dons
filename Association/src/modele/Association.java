@@ -201,6 +201,8 @@ public class Association extends Stockage {
 		log.writeToLog("info", "setStockageDon");
 		if(getListDons().contains(don)) {
 			don.setLieuxStockage(lieuStockage);
+			don.setStatu(StatutDon.STOCKE);
+			lieuStockage.addDon(don);
 		}else {
 			throw new Exception("Ce don n'appartient pas a la liste de dons de l'association");
 		}
@@ -212,6 +214,17 @@ public class Association extends Stockage {
 			don.setBeneficiaire(beneficiaire);
 		}else {
 			throw new Exception("Soit ce don n'est pas dans l'association soit ce beneficiare n'existe pas");
+		}
+	}
+	
+	public void addToArchive(Don don) throws Exception {
+		log.writeToLog("info", "addToArchive");
+		if(getListDons().contains(don)) {
+			don.setStatu(StatutDon.REFUSE);
+			archive.add(don);
+			getListDons().remove(don);
+		}else {
+			throw new Exception("Ce don n'est pas stocke dans l'association");
 		}
 	}
 
