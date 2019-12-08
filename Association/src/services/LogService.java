@@ -8,12 +8,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class LogService {
-	private String path;
+	private String path = "src/file/log.txt";
 	private File fichier;
 	private BufferedWriter out;
 	
-	public LogService(String path) throws IOException {
-		this.path = path;
+	public LogService() throws IOException {
 		fichier = new File(path);
 		fichier.createNewFile();
 		out = new BufferedWriter(new FileWriter(path,true));

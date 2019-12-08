@@ -16,7 +16,7 @@ public class TestMain {
 		Association asso = new Association();
 		ObjetDonnee obj = new ObjetDonnee();
 		try {
-		LogService log = new LogService("test.txt");
+		LogService log = new LogService();
 		log.writeToLog("test", "1");
 		log.writeToLog("test", "2");
 		log.closeLogFile();
