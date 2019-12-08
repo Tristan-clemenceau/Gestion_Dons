@@ -10,7 +10,16 @@ public class Adherent extends PersonnePhysique{
 		this.fonctionParticuliere = fonctionParticuliere;
 	}
 	
-	public Adherent() throws IOException {
+	public Adherent(int identifiant,String nom,String coordonne,String tel,String prenom,FonctionParticu fonctionParticuliere) {
+		super(prenom);
+		this.fonctionParticuliere = fonctionParticuliere;
+		super.setIdentifiant(identifiant);
+		super.setNom(nom);
+		super.setTelephone(tel);
+		super.setCoordonne(coordonne);
+	}
+	
+	public Adherent(){
 		super();
 		fonctionParticuliere = FonctionParticu.INCONNU;
 	}
