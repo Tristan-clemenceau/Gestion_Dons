@@ -23,6 +23,7 @@ public class TestMain {
 			System.out.println(asso);
 			System.out.println(obj);*/
 			asso.recherche(0, "Durand");
+			asso.suppression(asso.getBeneficiaire().get(0));
 			asso.closeLog();
 		}catch(Exception e) {
 			System.out.println("[ERREUR] : "+e.getMessage());

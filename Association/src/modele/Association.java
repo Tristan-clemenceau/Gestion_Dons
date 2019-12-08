@@ -120,6 +120,7 @@ public class Association extends Stockage {
 	}
 
 	public void closeLog() throws IOException {
+		log.writeToLog("info", "closeLog");
 		log.closeLogFile();
 	}
 
@@ -158,6 +159,19 @@ public class Association extends Stockage {
 				}
 			}
 			break;
+		}
+	}
+	
+	public void suppression(PersonnePhysique personne) throws Exception {
+		log.writeToLog("info", "supression");
+		if(personne.getClass().getName().toUpperCase().equals("MODELE.ADHERENT")) {
+			personneLieAsso.remove(personneLieAsso.indexOf(personne));
+			adherents.remove(adherents.indexOf(personne));
+		}else if(personne.getClass().getName().toUpperCase().equals("MODELE.BENEFICIAIRE")){//MODELE.BENEFICIAIRE
+			personneLieAsso.remove(personneLieAsso.indexOf(personne));
+			beneficiaire.remove(beneficiaire.indexOf(personne));
+		}else {
+			throw new Exception("Il n'est pas possible de modifier cette personne car elle n'est pas dans la liste de personne associee a l association");
 		}
 	}
 
