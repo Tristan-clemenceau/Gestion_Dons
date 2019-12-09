@@ -2,6 +2,8 @@ package association;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import exception.ExceptionAdherentFile;
@@ -9,6 +11,7 @@ import exception.ExceptionBeneficiaireFile;
 import modele.Association;
 import modele.DepotVente;
 import modele.Entrepot;
+import modele.Stockage;
 import modele.TypeActivite;
 
 public class Main {
@@ -20,10 +23,14 @@ public class Main {
 			DepotVente depotVente = new DepotVente(TypeActivite.DEPOTVENTE);
 			Association association = new Association(TypeActivite.ASSOCIATION);
 			//var 
+			ArrayList<Stockage> list = new ArrayList<Stockage>();
+			list.add(association);
+			list.add(depotVente);
+			list.add(entrepot);
 			boolean ok = setUp();
 
 			while(ok) {
-				run(association);
+				run(association,list);
 
 				ok = setUp();
 			}
@@ -38,9 +45,9 @@ public class Main {
 		message("Bonjour voulez vous utiliser le programme ? :\n oui : 0\n non : 1\nVotre choix :"); 
 		return choixSetUp();
 	}
-	public static void run(Association association) throws Exception {
+	public static void run(Association association,ArrayList<Stockage> list) throws Exception {
 		message("Veuillez choisir un module : \n1.Personne\n2.Don\n3.Recherche\n4.Statistique\nEntrer votre choix :"); 
-		redirection1(choixModule(),association);
+		redirection1(choixModule(),association,list);
 	}
 
 	//METHODE POUR LES DIFFERENTS CHOIX
@@ -124,7 +131,7 @@ public class Main {
 	}
 
 	//METHODE REDIRECTION
-	public static void redirection1(int value,Association association) throws Exception {
+	public static void redirection1(int value,Association association,ArrayList<Stockage> list) throws Exception {
 		switch (value) {
 		case 1:
 			message("Module Personne : \n1.Lire fichier\n2.Recherche Beneficiare par nom\n3.Recherche Beneficiare par Telephone\n4.Modification personne\n5.Suppression personnen\n6.Recherche Adherent par nom\n7 Recherche Adherent par Telephone\nEntrer votre choix :");
@@ -132,7 +139,7 @@ public class Main {
 			break;
 		case 2:
 			message("Module Don : \n1.Creation don \n2.Stockage don \n3.Transfert Beneficiare\n4.Archiver un don\nEntrer votre choix :");
-			redirectionDon(choixModuleDon(), association);
+			redirectionDon(choixModuleDon(), association,list);
 			break;
 		case 3:
 			message("Module Recherche : \n1.Don refuse\n2.Don en traitement \n3.Don vendus \n4.Don donnes\n5.Don stocke en entrepot\n6.Don par depot vente\nEntrer votre choix :");
@@ -246,7 +253,7 @@ public class Main {
 		}
 	}
 
-	public static void redirectionDon(int value, Association association ) throws Exception {
+	public static void redirectionDon(int value, Association association ,ArrayList<Stockage> list) throws Exception {
 		switch (value) {
 		case 1:
 			if(association.getPersonneLieAsso().size() ==0) {
@@ -256,24 +263,26 @@ public class Main {
 			}
 			break;
 		case 2:
-			if(association.getPersonneLieAsso().size() ==0) {
+			if(association.getPersonneLieAsso().size() ==0 ) {
 				message("Vous devez charger le fichier avant de faire cette opération");
+			}else if(association.getListDons().size() ==0){
+				message("Vous devez avoir créer un don avant de pouvoir le stocker");
 			}else {
-
+				stockageDon(association, list);
 			}
 			break;
 		case 3:
 			if(association.getPersonneLieAsso().size() ==0) {
 				message("Vous devez charger le fichier avant de faire cette opération");
 			}else {
-
+				transferToBene();
 			}
 			break;
 		case 4:
 			if(association.getPersonneLieAsso().size() ==0) {
 				message("Vous devez charger le fichier avant de faire cette opération");
 			}else {
-
+				archiveDon();
 			}
 			break;
 		}
@@ -331,7 +340,6 @@ public class Main {
 		message("Veillez choisir le numero qui vous correspond");
 		int choix = Integer.parseInt(choixPersonne());
 		if(choix>=0 && choix < association.getAdherents().size()) {
-			//String nameObjetc,int  identifiant,String type,String  forme,float puissance,int nombrePlaque, int nombrePiece, String typeDeDon, String description
 			message("Veuillez entrer un nom d'objet parmis ceux suivant (Armoires,Assiettes,chaises,chevet,couverts,cuisiniere,electromenager,laveLinge,matelas,refrigerateur,table,vaisselle) : ");
 			String nameObjetc = choixPersonne();
 			message("Veuillez entrer l'identifiant de votre objet :");
@@ -357,7 +365,37 @@ public class Main {
 		}
 	}
 	
-	
+	public static void stockageDon(Association association,ArrayList<Stockage> list) throws Exception {
+		association.dispDon();
+		message("Veillez choisir le numero du don a stocker");
+		int choix = Integer.parseInt(choixPersonne());
+		if(choix>=0 && choix < association.getListDons().size()) {
+			dispList(list);
+			message("Veillez choisir le lieu ou stocker le don");
+			int choixLieu = Integer.parseInt(choixPersonne());
+			if(choixLieu>=0 && choixLieu<list.size()) {
+				association.setStockageDon(association.getListDons().get(choix), list.get(choixLieu));
+			}else {
+				System.out.println("Il faut choisir un lieu existant");
+			}
+			message("Le don a bien ete stocke");
+		}else {
+			message("Vous ne pouvez pas stocker un don qui n existe pas ");
+		}
+	}
 
+	public static void transferToBene() {
+		
+	}
+	
+	public static void archiveDon() {
+		
+	}
+	
+	public static void dispList(ArrayList<Stockage> list) {
+		for (Stockage stockage : list) {
+			System.out.println(list.indexOf(stockage)+stockage.getTypeActivite().name());
+		}
+	}
 
 }

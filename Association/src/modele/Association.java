@@ -315,6 +315,13 @@ public class Association extends Stockage {
 			System.out.println(personneLieAsso.indexOf(bene)+"."+bene.toString());
 		}
 	}
+	
+	
+	public void dispDon() {
+		for(Don don : getListDons()) {
+			System.out.println(getListDons().indexOf(don)+"."+don.toString());
+		}
+	}
 	@Override
 	public String toString() {
 		return "[ASSOCIATION]\n"+super.toString()+"\nArchive=" + archive + "\nPersonneLieAsso=" + personneLieAsso + "\nAdherents=" + adherents
