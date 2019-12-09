@@ -272,17 +272,21 @@ public class Main {
 			}
 			break;
 		case 3:
-			if(association.getPersonneLieAsso().size() ==0) {
+			if(association.getPersonneLieAsso().size() ==0 ) {
 				message("Vous devez charger le fichier avant de faire cette opération");
+			}else if(association.getListDons().size() ==0){
+				message("Vous devez avoir créer un don avant de pouvoir le transferer");
 			}else {
-				transferToBene();
+				transferToBene(association);
 			}
 			break;
 		case 4:
-			if(association.getPersonneLieAsso().size() ==0) {
+			if(association.getPersonneLieAsso().size() ==0 ) {
 				message("Vous devez charger le fichier avant de faire cette opération");
+			}else if(association.getListDons().size() ==0){
+				message("Vous devez avoir créer un don avant de pouvoir le transferer");
 			}else {
-				archiveDon();
+				archiveDon(association);
 			}
 			break;
 		}
@@ -384,12 +388,35 @@ public class Main {
 		}
 	}
 
-	public static void transferToBene() {
-		
+	public static void transferToBene(Association association ) throws Exception {
+		association.dispDon();
+		message("Veillez choisir le numero du don a transferer");
+		int choix = Integer.parseInt(choixPersonne());
+		if(choix>=0 && choix < association.getListDons().size()) {
+			association.dispBeneficiaire();
+			message("Veillez choisir le numero du beneficiare");
+			int choixBene = Integer.parseInt(choixPersonne());
+			if(choixBene>=0 && choixBene<association.getBeneficiaire().size()) {
+				association.transfertDonToBeneficiaire(association.getListDons().get(choix), association.getBeneficiaire().get(choixBene));
+			}else {
+				System.out.println("Il faut choisir un beneficiare existant");
+			}
+			message("Le don a bien ete transfere");
+		}else {
+			message("Vous ne pouvez pas transferer un don qui n existe pas ");
+		}
 	}
 	
-	public static void archiveDon() {
-		
+	public static void archiveDon(Association association) throws Exception {
+		association.dispDon();
+		message("Veillez choisir le numero du don a archiver");
+		int choix = Integer.parseInt(choixPersonne());
+		if(choix>=0 && choix < association.getListDons().size()) {
+			association.addToArchive(association.getListDons().get(choix));
+			message("Le don a bien ete transfere");
+		}else {
+			message("Vous ne pouvez pas archiver un don qui n existe pas ");
+		}
 	}
 	
 	public static void dispList(ArrayList<Stockage> list) {
