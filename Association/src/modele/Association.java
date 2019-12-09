@@ -92,7 +92,7 @@ public class Association extends Stockage {
 	private FonctionParticu setFonctionParticu(String fonction) throws IOException {
 		log.writeToLog("info", "setFonctionParticu");
 		switch (fonction.toUpperCase()) {
-		case "TRESORIE":
+		case "TRESORIER":
 			return FonctionParticu.TRESORIER;
 		case "PRESIDENT":
 			return FonctionParticu.PRESIDENT;
@@ -241,7 +241,7 @@ public class Association extends Stockage {
 				personne.setNom(val);
 				break;
 			case 2:
-				personne.setCoordonne(val);;
+				personne.setCoordonne(val);
 				break;
 			case 3:
 				personne.setTelephone(val);

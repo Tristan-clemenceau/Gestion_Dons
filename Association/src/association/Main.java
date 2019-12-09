@@ -136,8 +136,11 @@ public class Main {
 			}
 			break;
 		case 4:
-			//message("Module Statistique : \nEn Cours de construction\nEntrer votre choix :");
-			System.out.println(4);
+			if(association.getPersonneLieAsso().size() ==0) {
+				message("Vous devez charger le fichier avant de faire cette opération");
+			}else {
+				 modificationPersonne( association);
+			}
 			break;
 		case 5:
 			if(association.getPersonneLieAsso().size() ==0) {
@@ -188,6 +191,24 @@ public class Main {
 			message("Vous ne pouvez pas supprimer une personne qui n existe pas ");
 		}
 		
+	}
+	
+	public static void modificationPersonne(Association association) throws Exception {
+		association.dispPersonnne();
+		message("Veillez choisir le numero de la personne a modifier");
+		int choix = Integer.parseInt(choixPersonne());
+		if(choix>=0 && choix < association.getPersonneLieAsso().size()) {
+			message("Veillez choisir le numero du champ a modifier : \n1.Nom\n2.Coordonne\n3.Telephone\n4.Prenom");
+			int choixChamp = Integer.parseInt(choixPersonne());
+			if(choixChamp>0 && choixChamp<5) {
+				message("Entrez la nouvelle valeur :");
+				association.modification(association.getPersonneLieAsso().get(choix),  choixChamp,choixPersonne());
+			}else {
+				message("Cette modification n'est pas possible");
+			}
+		}else {
+			message("Vous ne pouvez pas modifier une personne qui n existe pas ");
+		}
 	}
 	
 	public static void recherchePersonne(Association association,int etat,String var) throws IOException {
