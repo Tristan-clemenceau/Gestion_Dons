@@ -1,22 +1,22 @@
 package modele;
 
 public class PersonneMorale extends Personne {
-	private String typeActivite;
+	private TypeActivite typeActivite;
 	
 	public PersonneMorale() {
 		super(UNSET,UNSET,UNSET);
-		typeActivite = UNSET;
+		typeActivite = TypeActivite.INCONNU;
 	}
 	
-	public PersonneMorale(String typeActivite) {
+	public PersonneMorale(TypeActivite typeActivite) {
 		this.typeActivite = typeActivite;
 	}
 
-	public String getTypeActivite() {
+	public TypeActivite getTypeActivite() {
 		return typeActivite;
 	}
 
-	public void setTypeActivite(String typeActivite) {
+	public void setTypeActivite(TypeActivite typeActivite) {
 		this.typeActivite = typeActivite;
 	}
 

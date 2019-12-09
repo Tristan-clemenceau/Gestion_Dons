@@ -10,7 +10,11 @@ public class Stockage extends PersonneMorale{
 	private List<Don> listDons = new ArrayList<Don>();
 	
 	public Stockage() {
-		super(UNSET);
+		super(TypeActivite.INCONNU);
+	}
+	
+	public Stockage(TypeActivite typeActivite) {
+		super(typeActivite);
 	}
 	
 	public Stockage(float volumeStockageDisponible,Date dateDepot) {

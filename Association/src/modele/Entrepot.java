@@ -4,8 +4,8 @@ import java.io.IOException;
 
 public class Entrepot extends Stockage{
 
-	public Entrepot() throws IOException {
-		super();
+	public Entrepot(TypeActivite typeActivite) throws IOException {
+		super(typeActivite);
 	}
 	
 }

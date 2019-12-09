@@ -19,8 +19,8 @@ public class Association extends Stockage {
 	private List<Beneficiaire> beneficiaire = new ArrayList<Beneficiaire>();
 	private LogService log;
 
-	public Association() throws IOException {
-		super();
+	public Association(TypeActivite typeActivite) throws IOException {
+		super(typeActivite);
 		log = new LogService();
 	}
 
