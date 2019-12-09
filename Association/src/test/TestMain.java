@@ -18,7 +18,7 @@ public class TestMain {
 			Beneficiaire b1 = new Beneficiaire();
 			Adherent ad1 = new Adherent(FonctionParticu.MEMBRE);
 			Association asso = new Association();
-			ObjetDonnee obj = new ObjetDonnee();
+			ObjetDonnee obj = new ObjetDonnee(1);
 			Don d = new Don();
 			asso.setUp();
 			asso.recherchePersonnePhysique(0, "Durand");
