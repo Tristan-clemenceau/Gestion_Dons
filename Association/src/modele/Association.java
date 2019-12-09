@@ -289,6 +289,12 @@ public class Association extends Stockage {
 	public void propositionDon(Don don) {
 		getListDons().add(don);
 	}
+	
+	public void dispPersonnne() {
+		for(PersonnePhysique pers : personneLieAsso) {
+			System.out.println(personneLieAsso.indexOf(pers)+"."+pers.toString());
+		}
+	}
 
 	@Override
 	public String toString() {
