@@ -21,7 +21,7 @@ public class Main {
 			Association association = new Association(TypeActivite.ASSOCIATION);
 			//var 
 			boolean ok = setUp();
-			
+
 			while(ok) {
 				run(association);
 
@@ -75,7 +75,7 @@ public class Main {
 		return Integer.parseInt(choix);
 
 	}
-	
+
 	public static int choixModulePersonne() {
 		Scanner sc = new Scanner(System.in);
 		String choix = sc.nextLine();
@@ -89,7 +89,7 @@ public class Main {
 		return Integer.parseInt(choix);
 
 	}
-	
+
 	public static int choixModuleRecherche() {
 		Scanner sc = new Scanner(System.in);
 		String choix = sc.nextLine();
@@ -99,6 +99,20 @@ public class Main {
 			System.out.println("Les choix possibles de réponse sont 1,2,3,4,5,6");
 			choix = sc.nextLine();
 			ok = choix.equals("1") || choix.equals("2") || choix.equals("3") || choix.equals("4")|| choix.equals("5")|| choix.equals("6");
+		}
+		return Integer.parseInt(choix);
+
+	}
+
+	public static int choixModuleDon() {
+		Scanner sc = new Scanner(System.in);
+		String choix = sc.nextLine();
+
+		boolean ok = choix.equals("1") || choix.equals("2") || choix.equals("3") || choix.equals("4");
+		while (!ok) {
+			System.out.println("Les choix possibles de réponse sont 1,2,3,4");
+			choix = sc.nextLine();
+			ok = choix.equals("1") || choix.equals("2") || choix.equals("3") || choix.equals("4");
 		}
 		return Integer.parseInt(choix);
 
@@ -118,6 +132,7 @@ public class Main {
 			break;
 		case 2:
 			message("Module Don : \n1.Creation don \n2.Stockage don \n3.Transfert Beneficiare\n4.Archiver un don\nEntrer votre choix :");
+			redirectionDon(choixModuleDon(), association);
 			break;
 		case 3:
 			message("Module Recherche : \n1.Don refuse\n2.Don en traitement \n3.Don vendus \n4.Don donnes\n5.Don stocke en entrepot\n6.Don par depot vente\nEntrer votre choix :");
@@ -154,7 +169,7 @@ public class Main {
 			if(association.getPersonneLieAsso().size() ==0) {
 				message("Vous devez charger le fichier avant de faire cette opération");
 			}else {
-				 modificationPersonne( association);
+				modificationPersonne( association);
 			}
 			break;
 		case 5:
@@ -171,7 +186,7 @@ public class Main {
 				message("Entrez un nom :");
 				recherchePersonne( association,0,choixPersonne());
 			}
-			
+
 			break;
 		case 7:
 			if(association.getPersonneLieAsso().size() ==0) {
@@ -183,8 +198,7 @@ public class Main {
 			break;
 		}
 	}
-	
-	
+
 	public static void redirectionRecherche(int value, Association association ) throws Exception {
 		switch (value) {
 		case 1:
@@ -231,20 +245,51 @@ public class Main {
 			break;
 		}
 	}
+
+	public static void redirectionDon(int value, Association association ) throws Exception {
+		switch (value) {
+		case 1:
+			if(association.getPersonneLieAsso().size() ==0) {
+				message("Vous devez charger le fichier avant de faire cette opération");
+			}else {
+				creationDon(association);
+			}
+			break;
+		case 2:
+			if(association.getPersonneLieAsso().size() ==0) {
+				message("Vous devez charger le fichier avant de faire cette opération");
+			}else {
+
+			}
+			break;
+		case 3:
+			if(association.getPersonneLieAsso().size() ==0) {
+				message("Vous devez charger le fichier avant de faire cette opération");
+			}else {
+
+			}
+			break;
+		case 4:
+			if(association.getPersonneLieAsso().size() ==0) {
+				message("Vous devez charger le fichier avant de faire cette opération");
+			}else {
+
+			}
+			break;
+		}
+	}
 	//METHODE SUB
 	public static void lireFichier(Association association) throws NumberFormatException, IOException, ExceptionBeneficiaireFile, ParseException, ExceptionAdherentFile {
 		association.setUp();
 		message("==Les fichiers ont bien ete chargee==");
 	}
-	
-	
-	
+
 	public static String choixPersonne() {
 		Scanner sc = new Scanner(System.in);
 		String choix = sc.nextLine();
 		return choix;
 	} 
-	
+
 	public static void suppressionPersonne(Association association) throws Exception {
 		association.dispPersonnne();
 		message("Veillez choisir le numero de la personne a supprimer");
@@ -255,9 +300,9 @@ public class Main {
 		}else {
 			message("Vous ne pouvez pas supprimer une personne qui n existe pas ");
 		}
-		
+
 	}
-	
+
 	public static void modificationPersonne(Association association) throws Exception {
 		association.dispPersonnne();
 		message("Veillez choisir le numero de la personne a modifier");
@@ -275,11 +320,44 @@ public class Main {
 			message("Vous ne pouvez pas modifier une personne qui n existe pas ");
 		}
 	}
-	
+
 	public static void recherchePersonne(Association association,int etat,String var) throws IOException {
 		System.out.println("var : "+var+"etat : "+etat);
 		association.recherchePersonnePhysique(etat, var);
 	}
+	
+	public static void creationDon(Association association) throws Exception {
+		association.dispAdherentMembre();
+		message("Veillez choisir le numero qui vous correspond");
+		int choix = Integer.parseInt(choixPersonne());
+		if(choix>=0 && choix < association.getAdherents().size()) {
+			//String nameObjetc,int  identifiant,String type,String  forme,float puissance,int nombrePlaque, int nombrePiece, String typeDeDon, String description
+			message("Veuillez entrer un nom d'objet parmis ceux suivant (Armoires,Assiettes,chaises,chevet,couverts,cuisiniere,electromenager,laveLinge,matelas,refrigerateur,table,vaisselle) : ");
+			String nameObjetc = choixPersonne();
+			message("Veuillez entrer l'identifiant de votre objet :");
+			int identifiant = Integer.parseInt(choixPersonne());
+			message("Veuillez entrer le type de votre objet (salon,cuisine etc..) : ");
+			String type = choixPersonne();
+			message("Veuillez entrer la forme de votre objet (rectangulaire , ovale etc.. ):");
+			String forme = choixPersonne();
+			message("Veuillez entrer la puissance de votre plaque (0 si pas de puissance pour votre objet ):");
+			float puissance = Float.parseFloat(choixPersonne());
+			message("Veuillez entrer le nombre de plaque de cuisson (0 si pas de plaque de cuisson pour votre objet ):");
+			int nombrePlaque = Integer.parseInt(choixPersonne());
+			message("Veuillez entrer le nombre de piece (0 si pas de piece pour votre objet ):");
+			int nombrePiece = Integer.parseInt(choixPersonne());
+			message("Veuillez indiquer le type de votre don (Mobilier , objet , argent):");
+			String typeDeDon = choixPersonne();
+			message("veuillez ecrire une petite description de votre objet (objet en bonne etat et rouge)");
+			String description = choixPersonne();
+			association.propositionDon(association.getAdherents().get(choix).creationDon(nameObjetc, identifiant, type, forme, puissance, nombrePlaque, nombrePiece, typeDeDon, description));
+			System.out.println("Votre don a bien ete enregistre");
+		}else {
+			message("Vous ne pouvez pas choisir un element hors liste");
+		}
+	}
+	
+	
 
 
 }

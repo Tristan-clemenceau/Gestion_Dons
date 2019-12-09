@@ -296,6 +296,25 @@ public class Association extends Stockage {
 		}
 	}
 
+	public void dispAdherent() {
+		for(Adherent ade : adherents) {
+			System.out.println(personneLieAsso.indexOf(ade)+"."+ade.toString());
+		}
+	}
+	
+	public void dispAdherentMembre() {
+		for(Adherent ade : adherents) {
+			if(ade.getFonctionParticuliere().name().toUpperCase().equals("membre".toUpperCase())) {
+				System.out.println(personneLieAsso.indexOf(ade)+"."+ade.toString());
+			}			
+		}
+	}
+	
+	public void dispBeneficiaire() {
+		for(Beneficiaire bene : beneficiaire) {
+			System.out.println(personneLieAsso.indexOf(bene)+"."+bene.toString());
+		}
+	}
 	@Override
 	public String toString() {
 		return "[ASSOCIATION]\n"+super.toString()+"\nArchive=" + archive + "\nPersonneLieAsso=" + personneLieAsso + "\nAdherents=" + adherents
