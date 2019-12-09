@@ -19,6 +19,7 @@ public class TestMain {
 			Adherent ad1 = new Adherent(FonctionParticu.MEMBRE);
 			Association asso = new Association();
 			ObjetDonnee obj = new ObjetDonnee(1);
+			
 			Don d = new Don();
 			asso.setUp();
 			asso.recherchePersonnePhysique(0, "Durand");
@@ -29,7 +30,9 @@ public class TestMain {
 			d.setMontant(10.0f);
 			d.setLieuxStockage(new Entrepot());
 			System.out.println(d.getLieuxStockage().getClass().getName().toUpperCase());
-			asso.addDon(d);
+			//ad1.creationDon("armoires", 1, "", "", 0.0f, 0, 0, "Chambre", "Ancienne armoire");
+			asso.propositionDon(ad1.creationDon("armoires", 1, "", "", 0.0f, 0, 0, "Chambre", "Ancienne armoire"));
+			System.out.println(asso.getListDons().toString());
 			asso.rechercheDon(3);
 			asso.closeLog();
 		}catch(Exception e) {

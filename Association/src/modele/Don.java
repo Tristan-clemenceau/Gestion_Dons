@@ -12,6 +12,14 @@ public class Don {
 	private Adherent donateur,membreTraitantDossier;
 	private StatutDon statu;
 	
+	public Don(ObjetDonnee reference,String type,String description,Adherent donateur) {
+		this.reference = reference;
+		this.type = type;
+		this.description = description;
+		this.donateur = donateur;
+		statu = StatutDon.ATTENTE;
+	}
+	
 	public Don() {
 		statu = StatutDon.ATTENTE;
 	}

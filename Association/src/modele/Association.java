@@ -285,6 +285,10 @@ public class Association extends Stockage {
 			throw new Exception("Ce don n'est pas stocke dans l'association");
 		}
 	}
+	
+	public void propositionDon(Don don) {
+		getListDons().add(don);
+	}
 
 	@Override
 	public String toString() {

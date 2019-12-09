@@ -32,12 +32,17 @@ public class Adherent extends PersonnePhysique{
 		this.fonctionParticuliere = fonctionParticuliere;
 	}
 	
-	public Don creationDon() {
-		return new Don();
+	public Don creationDon(String nameObjetc,int  identifiant,String type,String  forme,float puissance,int nombrePlaque, int nombrePiece, String typeDeDon, String description)throws Exception {
+		if(this.getFonctionParticuliere().name().equals("membre".toUpperCase())) {
+			return new Don(creationObjet( nameObjetc,  identifiant, type,  forme, puissance, nombrePlaque,  nombrePiece), type, description,this);
+		}else {
+			throw new Exception("Seul un membre peut faire un don a l'association");
+		}
 	}
 	
-	private ObjetDonnee creationObjet() {
-		return null;
+	private ObjetDonnee creationObjet(String nameObjetc,int  identifiant,String type,String  forme,float puissance,int nombrePlaque, int nombrePiece) throws Exception {
+		ObjetFactory obj = new ObjetFactory();
+		return obj.getObjet(nameObjetc, identifiant, type, forme, puissance, nombrePlaque, nombrePiece);
 	}
 
 	@Override
