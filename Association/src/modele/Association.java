@@ -93,7 +93,7 @@ public class Association extends Stockage {
 		log.writeToLog("info", "setFonctionParticu");
 		switch (fonction.toUpperCase()) {
 		case "TRESORIE":
-			return FonctionParticu.TRESORIE;
+			return FonctionParticu.TRESORIER;
 		case "PRESIDENT":
 			return FonctionParticu.PRESIDENT;
 		case "MEMBRE":

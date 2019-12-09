@@ -140,7 +140,11 @@ public class Main {
 			System.out.println(4);
 			break;
 		case 5:
-			suppressionPersonne(association);
+			if(association.getPersonneLieAsso().size() ==0) {
+				message("Vous devez charger le fichier avant de faire cette opération");
+			}else {
+				suppressionPersonne(association);
+			}
 			break;
 		case 6:
 			if(association.getPersonneLieAsso().size() ==0) {
@@ -179,6 +183,7 @@ public class Main {
 		int choix = Integer.parseInt(choixPersonne());
 		if(choix>=0 && choix < association.getPersonneLieAsso().size()) {
 			association.suppression(association.getPersonneLieAsso().get(choix));
+			message("La personne a bien ete supprimee");
 		}else {
 			message("Vous ne pouvez pas supprimer une personne qui n existe pas ");
 		}

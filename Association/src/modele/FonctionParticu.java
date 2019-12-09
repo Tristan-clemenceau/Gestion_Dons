@@ -1,7 +1,7 @@
 package modele;
 
 public enum FonctionParticu {
-	TRESORIE,
+	TRESORIER,
 	PRESIDENT,
 	MEMBRE,
 	INCONNU
