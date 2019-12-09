@@ -2,7 +2,7 @@ package modele;
 
 public class ObjetFactory {
 
-	public ObjetDonnee getObjet(String nameObjetc,int identifiant,String type,String forme,float puissance,int nombrePlaque,int nombrepiece) {
+	public ObjetDonnee getObjet(String nameObjetc,int identifiant,String type,String forme,float puissance,int nombrePlaque,int nombrePiece) throws Exception {
 		switch (nameObjetc.toLowerCase()) {
 		case "matelas":
 				return new Matelas(identifiant);
@@ -11,35 +11,25 @@ public class ObjetFactory {
 		case "armoires":
 				return new Armoires(identifiant);
 		case "table":
-
-			break;
+				return new Table(identifiant, type, forme);
 		case "chaises":
-
-			break;
+				return new Chaises(identifiant);
 		case "electromenager":
-
-			break;
+				return new ElectroMenager(identifiant);
 		case "cuisiniere":
-
-			break;
+				return new Cuisiniere(identifiant, puissance, nombrePlaque);
 		case "refrigerateur":
-
-			break;
+				return new Refrigerateur(identifiant);
 		case "lavelinge":
-
-			break;
+				return new LaveLinge(identifiant);
 		case "vaisselle":
-
-			break;
+				return new Vaisselle(identifiant, nombrePiece);
 		case "couverts":
-
-			break;
+				return new Couverts(identifiant);
 		case "assiettes":
-
-			break;
+				return new Assiettes(identifiant);
 		default:
-			System.out.println("Cette objet n'est pas repertorié");
-			break;
+			throw new Exception("Cet objet n'est pas répertorié");
 		}
 	}
 }
