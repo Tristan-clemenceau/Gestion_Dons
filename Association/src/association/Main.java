@@ -21,7 +21,7 @@ public class Main {
 			Association association = new Association(TypeActivite.ASSOCIATION);
 			//var 
 			boolean ok = setUp();
-			//Ajout des données contenu dans les txt en memoire
+			
 			while(ok) {
 				run(association);
 
@@ -82,9 +82,23 @@ public class Main {
 
 		boolean ok = choix.equals("1") || choix.equals("2") || choix.equals("3") || choix.equals("4")|| choix.equals("5")|| choix.equals("6")|| choix.equals("7");
 		while (!ok) {
-			System.out.println("Les choix possibles de réponse sont 1,2,3,4");
+			System.out.println("Les choix possibles de réponse sont 1,2,3,4,5,6,7");
 			choix = sc.nextLine();
 			ok = choix.equals("1") || choix.equals("2") || choix.equals("3") || choix.equals("4")|| choix.equals("5")|| choix.equals("6")|| choix.equals("7");
+		}
+		return Integer.parseInt(choix);
+
+	}
+	
+	public static int choixModuleRecherche() {
+		Scanner sc = new Scanner(System.in);
+		String choix = sc.nextLine();
+
+		boolean ok = choix.equals("1") || choix.equals("2") || choix.equals("3") || choix.equals("4")|| choix.equals("5")|| choix.equals("6");
+		while (!ok) {
+			System.out.println("Les choix possibles de réponse sont 1,2,3,4,5,6");
+			choix = sc.nextLine();
+			ok = choix.equals("1") || choix.equals("2") || choix.equals("3") || choix.equals("4")|| choix.equals("5")|| choix.equals("6");
 		}
 		return Integer.parseInt(choix);
 
@@ -107,6 +121,7 @@ public class Main {
 			break;
 		case 3:
 			message("Module Recherche : \n1.Don refuse\n2.Don en traitement \n3.Don vendus \n4.Don donnes\n5.Don stocke en entrepot\n6.Don par depot vente\nEntrer votre choix :");
+			redirectionRecherche( choixModuleRecherche(),  association );
 			break;
 		case 4:
 			message("Module Statistique : \nEn Cours de construction\nEntrer votre choix :");
@@ -168,11 +183,61 @@ public class Main {
 			break;
 		}
 	}
+	
+	
+	public static void redirectionRecherche(int value, Association association ) throws Exception {
+		switch (value) {
+		case 1:
+			if(association.getPersonneLieAsso().size() ==0) {
+				message("Vous devez charger le fichier avant de faire cette opération");
+			}else {
+				association.rechercheDon(value);
+			}
+			break;
+		case 2:
+			if(association.getPersonneLieAsso().size() ==0) {
+				message("Vous devez charger le fichier avant de faire cette opération");
+			}else {
+				association.rechercheDon(value);
+			}
+			break;
+		case 3:
+			if(association.getPersonneLieAsso().size() ==0) {
+				message("Vous devez charger le fichier avant de faire cette opération");
+			}else {
+				association.rechercheDon(value);
+			}
+			break;
+		case 4:
+			if(association.getPersonneLieAsso().size() ==0) {
+				message("Vous devez charger le fichier avant de faire cette opération");
+			}else {
+				association.rechercheDon(value);
+			}
+			break;
+		case 5:
+			if(association.getPersonneLieAsso().size() ==0) {
+				message("Vous devez charger le fichier avant de faire cette opération");
+			}else {
+				association.rechercheDon(value);
+			}
+			break;
+		case 6:
+			if(association.getPersonneLieAsso().size() ==0) {
+				message("Vous devez charger le fichier avant de faire cette opération");
+			}else {
+				association.rechercheDon(value);
+			}
+			break;
+		}
+	}
 	//METHODE SUB
 	public static void lireFichier(Association association) throws NumberFormatException, IOException, ExceptionBeneficiaireFile, ParseException, ExceptionAdherentFile {
 		association.setUp();
 		message("==Les fichiers ont bien ete chargee==");
 	}
+	
+	
 	
 	public static String choixPersonne() {
 		Scanner sc = new Scanner(System.in);
